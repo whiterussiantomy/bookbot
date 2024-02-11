@@ -1,15 +1,18 @@
 def main():
     book_name = "books/frankestein.txt"
-    with open(book_name) as f:
-        file_contents = f.read()
-
+    file_contents = get_contents(book_name)
     no_words = count_words(file_contents)
     chars_dict = count_letters(file_contents)
     print_report(book_name, no_words, chars_dict)
 
+def get_contents(book_name):
+    with open(book_name) as f:
+        return f.read()
+    
 
 def count_words(content):
     return len(content.split())
+
 
 def count_letters(text):
     chars = {}
@@ -19,6 +22,7 @@ def count_letters(text):
         else:
             chars[c] += 1
     return chars
+
 
 def print_report(book_name, total_words, dic):
     ls = []
@@ -33,5 +37,6 @@ def print_report(book_name, total_words, dic):
     for dic in ls:
         print(f"The '{dic["char"]}' character was found {dic["num"]} times")
     print("--- End report ---")
+
 
 main()
